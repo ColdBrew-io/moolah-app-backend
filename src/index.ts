@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -14,6 +15,7 @@ const corsOptions ={
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const connection = mysql.createPool({
     host: process.env.DB_HOST,
