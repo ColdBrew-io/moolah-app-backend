@@ -25,7 +25,8 @@ const connection = mysql.createPool({
 });
 
 const budgetsRoute = require('./routes/Budgets');
-app.use('/budgets', budgetsRoute);
+
+app.use('/.netlify/functions/api', budgetsRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => {
