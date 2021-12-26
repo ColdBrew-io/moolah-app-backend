@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 const router = express.Router();
 import mysql from 'mysql';
-import { connection } from './../app';
+import { connection } from './../index';
 
 // get all
 router.get('/', (req: Request, res: Response) => {
