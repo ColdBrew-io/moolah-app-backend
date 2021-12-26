@@ -21,7 +21,7 @@ const connection = mysql.createPool({
 // });
 
 const budgetsRoute = require('./routes/Budgets');
-app.use('/budgets', budgetsRoute);
+app.use('/', budgetsRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => {
