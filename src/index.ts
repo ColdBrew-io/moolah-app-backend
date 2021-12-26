@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -6,8 +7,15 @@ import cors from 'cors';
 dotenv.config();
 const app = express();
 
-app.use(cors());
-//app.use(express.json());
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const connection = mysql.createPool({
     host: process.env.DB_HOST,
@@ -15,13 +23,9 @@ const connection = mysql.createPool({
     password: process.env.DB_PWD,
     database: process.env.DB_NAME
 });
-//connection.connect();
-// app.get("/", (req, res) => {
-//     if(connection.)
-// });
 
 const budgetsRoute = require('./routes/Budgets');
-app.use('/', budgetsRoute);
+app.use('/budgets', budgetsRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => {
