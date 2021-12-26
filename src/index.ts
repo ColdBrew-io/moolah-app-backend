@@ -6,24 +6,22 @@ import cors from 'cors';
 dotenv.config();
 const app = express();
 
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+app.use(cors());
 //app.use(express.json());
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
     database: process.env.DB_NAME
 });
-connection.connect();
+//connection.connect();
+// app.get("/", (req, res) => {
+//     if(connection.)
+// });
 
 const budgetsRoute = require('./routes/Budgets');
-app.use('/budget', budgetsRoute);
+app.use('/budgets', budgetsRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => {
@@ -31,4 +29,4 @@ app.listen(port, () => {
     console.log(`Sender is listening on port ${port}`)
 });
 
-export {connection};
+export { connection };

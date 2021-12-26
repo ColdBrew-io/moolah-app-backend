@@ -6,7 +6,7 @@ import { connection } from './../index';
 // get all
 router.get('/', (req: Request, res: Response) => {
     const query = 'SELECT * FROM budgets';
-    console.log("getting all")
+    console.log(query)
     connection.query(query, (err, rows) => {
         if (err) throw err;
 
