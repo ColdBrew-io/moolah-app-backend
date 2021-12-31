@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 const router = express.Router();
-import mysql from 'mysql';
 import { connection } from './../index';
 
 // get all
@@ -23,7 +22,6 @@ router.get('/', (req: Request, res: Response) => {
 
 // single post (from summary page for now)
 router.post('/', (req: Request, res: Response) => {
-    
     const budgetType = req.body.budget_type;
     const budgetAmount = req.body.budget_amount;
     const savingGoal = req.body.saving_goal;
