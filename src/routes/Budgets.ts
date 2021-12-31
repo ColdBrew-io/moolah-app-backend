@@ -27,15 +27,14 @@ router.post('/', (req: Request, res: Response) => {
     const savingGoal = req.body.saving_goal;
     const repeatBudget = req.body.repeat_budget;
 
-    let insertQuery = `INSERT INTO budgets (budget_id, budget_type, budget_amount, saving_goal, repeat_budget) `;
-    insertQuery += `VALUES (3, "${budgetType}", ${budgetAmount}, ${savingGoal},${repeatBudget})`;
+    let insertQuery = `INSERT INTO budgets (budget_type, budget_amount, saving_goal, repeat_budget) `;
+    insertQuery += `VALUES ("${budgetType}", ${budgetAmount}, ${savingGoal}, ${repeatBudget})`;
 
     console.log(insertQuery)
     connection.query(insertQuery, (err, result) => {
         console.log(result);
         console.log("err", err);
         res.send(result);
-
     });
 });
 
