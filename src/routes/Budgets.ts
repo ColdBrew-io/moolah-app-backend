@@ -6,17 +6,18 @@ import { connection } from './../index';
 router.get('/', (req: Request, res: Response) => {
     const query = 'SELECT * FROM budgets';
     console.log(query)
-    connection.query(query, (err, rows) => {
+    connection.query(query, (err, results) => {
         if (err) throw err;
 
         const retVal = {
-            data: rows,
+            data: results,
             message: '',
         };
-        if (rows.length === 0) {
+        if (results.length === 0) {
             retVal.message = 'No records found';
         }
-        res.send(rows);
+        console.log(results);
+        res.send(results);
     });
 });
 
@@ -33,7 +34,6 @@ router.post('/', (req: Request, res: Response) => {
     console.log(insertQuery)
     connection.query(insertQuery, (err, result) => {
         console.log(result);
-        console.log("err", err);
         res.send(result);
     });
 });
